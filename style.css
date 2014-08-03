@@ -72,6 +72,7 @@ html, body {
   left: 53%;
   top: 45%;
   transform: translateX(-50%) rotate(-4deg);
+  color: rgba(0,0,0,0);
   background-color: transparent;
   font-family: 'Oswald', sans-serif;
   font-size: 3em;
