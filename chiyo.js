@@ -4,18 +4,18 @@ var imageObj = new Image();
 
 imageObj.onload = function() {
     context.drawImage(imageObj, 0, 0);
-    writeText(context, "DON'T SEXUALIZE CHIYO");
+    //writeText(context, 'DON\'T SEXUALIZE CHIYO');
 };
 imageObj.src = 'http://puu.sh/aCUEX.jpg';
 
 var radians = 180 / Math.PI;
 
-context.font = "3em Oswald";
-context.textAlign = "center";
+context.font = '3em Oswald';
+context.textAlign = 'center';
 
 
 
-document.getElementById('text').addEventListener('keyup', function (){
+document.getElementById('sexualize').addEventListener('keyup', function (){
 	writeText(context, this.value);
 }, false);
 
@@ -24,9 +24,9 @@ function writeText(context, text) {
     context.drawImage(imageObj, 0, 0); // redraws Chiyo
     
     context.save();
-    context.rotate(-4.5/radians); // rotates to match the sign board
+    context.rotate(-4/radians); // rotates to match the sign board
 
-    context.fillText(text, 242, 400);
+    context.fillText(text, 247, 391);
 
     context.restore(); // undoes rotation
 }
