@@ -1,12 +1,17 @@
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var imageObj = new Image();
+var background = new Image();
+var overlay = new Image();
+var png = 'http://puu.sh/aW8Ge.png';
+var jpg = 'http://puu.sh/aCUEX.jpg';
 
-imageObj.onload = function() {
-    context.drawImage(imageObj, 0, 0);
-    writeText(context, 'DON\'T SEXUALIZE CHIYO');
+background.onload = function() {
+	context.drawImage(background, 0, 0);
+	writeText(context, 'DON\'T SEXUALIZE CHIYO');
+    context.drawImage(overlay, 0, 0);
 };
-imageObj.src = 'http://puu.sh/aCUEX.jpg';
+background.src = jpg;
+overlay.src= png;
 
 var angle = -4/(180 / Math.PI);
 
@@ -17,10 +22,9 @@ document.getElementById('sexualize').addEventListener('keyup', function (){
 	writeText(context, this.value);
 }, false);
 
-
 function writeText(context, text) {
 	context.clearRect(0, 0, canvas.width, canvas.height); // Clear's canvas
-    context.drawImage(imageObj, 0, 0); // redraws Chiyo
+    context.drawImage(background, 0, 0); // draws opaque Chiyo
     
     context.save();
     context.rotate(angle); // rotates to match the sign board
@@ -29,6 +33,7 @@ function writeText(context, text) {
     wordWrap(context, text, 247, 391);
 
     context.restore(); // undoes rotation
+    context.drawImage(overlay, 0, 0); // draws transparent chiyo
 }
 
 function wordWrap(context, text, x, y) {
