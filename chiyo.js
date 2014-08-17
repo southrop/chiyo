@@ -4,7 +4,7 @@ var imageObj = new Image();
 
 imageObj.onload = function() {
     context.drawImage(imageObj, 0, 0);
-    //writeText(context, 'DON\'T SEXUALIZE CHIYO');
+    writeText(context, 'DON\'T SEXUALIZE CHIYO');
 };
 imageObj.src = 'http://puu.sh/aCUEX.jpg';
 
@@ -31,14 +31,12 @@ function writeText(context, text) {
     context.restore(); // undoes rotation
 }
 
-// TODO: HANDLE TEXT OVERFLOW
-
 function wordWrap(context, text, x, y) {
 	context.font = '3em Oswald';
 	context.textAlign = 'center';
 
 	var lineHeight = 71;
-	var maxWidth = 230;
+	var maxWidth = 270;
 
 	var words = text.split("\n");
 	for (var i = 0; i < words.length; i++) {
@@ -56,14 +54,18 @@ function wordWrap(context, text, x, y) {
 			}
 
 			if (context.measureText(testLine).width > maxWidth) {
-				context.fillText(line, x, y);
-				line = words[i][j];
-				y += lineHeight;
+				if (y < 550) {
+					context.fillText(line, x, y);
+					line = words[i][j];
+					y += lineHeight;
+				}
 			} else {
 				line = testLine;
 			}
 		};
-		context.fillText(line, x, y);
-		y += lineHeight;
+		if (y < 550) {
+			context.fillText(line, x, y);
+			y += lineHeight;
+		}
 	};
 }
